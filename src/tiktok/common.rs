@@ -10,6 +10,7 @@ pub async fn get_real_domain(url: &str) -> Option<String> {
 
 pub enum TiktokResource {
     Image(ImageResource),
+    Video,
 }
 
 impl TiktokResource {
@@ -23,6 +24,8 @@ impl TiktokResource {
             // 处理图片下载
             let image_resource = ImageResource::from_url(&real_domain).await;
             return Some(Self::Image(image_resource));
+        } else if real_domain.contains("video") {
+            return Some(Self::Video);
         }
         None
     }

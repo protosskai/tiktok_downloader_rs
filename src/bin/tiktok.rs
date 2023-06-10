@@ -20,8 +20,12 @@ async fn main() -> Result<(), Error> {
                 let path = image.get_download_folder();
                 image.download(path).await;
             }
-            _ => {}
+            _ => {
+                println!("目前暂不支持视频下载.")
+            }
         }
+    } else {
+        println!("未知的资源类型，暂不支持.")
     }
     Ok(())
 }
